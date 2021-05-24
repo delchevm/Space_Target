@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Creates a spaner object for enemy objects
 public class EnemySpawner : MonoBehaviour
 {
 
@@ -19,7 +20,8 @@ public class EnemySpawner : MonoBehaviour
         timeBtwSpawn = 1f;
 
     }
-
+    
+    // randomises the position of the spawner point
     void Update()
     {
         LevelManger enemySpeed = GameObject.Find("Main Camera").GetComponent<LevelManger>();
