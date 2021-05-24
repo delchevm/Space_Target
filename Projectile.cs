@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// Controls movements and interactions
 public class Projectile : MonoBehaviour
 {
 
@@ -15,12 +16,14 @@ public class Projectile : MonoBehaviour
     {
         TotalEverDestroyed = PlayerPrefs.GetInt("TotalDestroyed");
     }
-
+    
+    // Movement
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + Vector2.up * speed * Time.deltaTime);
     }
-
+    
+    // Interactions on collision - reduces or increases score
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -43,8 +46,7 @@ public class Projectile : MonoBehaviour
         }
         else if (collision.tag == "UFO")
         {
-            Score.EnemiesDestroyed++;
-            Score.EnemiesDestroyed++;
+            Score.EnemiesDestroyed += 2;
             TotalEverDestroyed++;
             PlayerPrefs.SetInt("TotalDestroyed", TotalEverDestroyed);
 
@@ -59,8 +61,7 @@ public class Projectile : MonoBehaviour
             }
             else
             {
-                Score.EnemiesDestroyed--;
-                Score.EnemiesDestroyed--;
+                Score.EnemiesDestroyed -= 2;
             }
 
             TotalEverDestroyed++;
