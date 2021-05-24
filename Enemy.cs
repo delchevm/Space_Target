@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRight : MonoBehaviour
+// Controls emeny behaviour
+public class Enemy : MonoBehaviour
 {
     public Rigidbody2D rb;
     private float enemySpeed;
@@ -15,7 +16,8 @@ public class EnemyRight : MonoBehaviour
     private float SpeedUP = 1f;
 
     SpriteRenderer spritecolour;
-
+    
+    // Sets up the speed and rotationa of the game object
     void Start()
     {
         spritecolour = GetComponent<SpriteRenderer>();
@@ -41,7 +43,7 @@ public class EnemyRight : MonoBehaviour
         transform.Rotate(0f, 0f, speedRotation);
     }
 
-
+    // Handles interactions with other objects
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Projectile")
@@ -50,6 +52,8 @@ public class EnemyRight : MonoBehaviour
         }
 
     }
+    
+    // Movement
     private void FixedUpdate()
     {
         rb.MovePosition(rb.position + Vector2.left * totalSpeed * Time.deltaTime);
