@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Allow the player to revive after watching an ad
 public class Revive : MonoBehaviour
 {
     public static Revive revive;
@@ -16,7 +17,7 @@ public class Revive : MonoBehaviour
     private int vidComp;
     public int totalRevivedTimes;
 
-
+    // Sets the conditions for revival availability
     private void Start()
     {
         totalRevivedTimes = PlayerPrefs.GetInt("totalReviveTimes",0);
@@ -34,6 +35,8 @@ public class Revive : MonoBehaviour
 
         }
     }
+    
+    // Checks if ad has finished
     private void Update()
     {
         vidComp = PlayerPrefs.GetInt("videoComplete");
@@ -43,15 +46,13 @@ public class Revive : MonoBehaviour
         }
     }
 
-
-
+    
     public void SceneSwitcher()
     {
-
         AdManager.instance.ShowRewardedAd();
-
     }
-
+    
+    // Set triggers are record values
     public void VideoComplete()
     {
         reviveButton.interactable = false;
